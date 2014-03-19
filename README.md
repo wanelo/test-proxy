@@ -40,9 +40,9 @@ cd /tmp
 git clone https://github.com/wanelo/test-proxy.git test-proxy
 cd test-proxy
 
-echo "Proooooxxxxxxyyyyyyyy..........."
-${GO} build
-sudo ./test-proxy --port 7171 \
+echo "Building proxy"
+make
+sudo /tmp/test-proxy/bin/test-proxy --port 7171 \
                   --cert $TRAVIS_BUILD_DIR/spec/support/features/cert.pem \
                   --key $TRAVIS_BUILD_DIR/spec/support/features/key.pem &
 
@@ -53,4 +53,13 @@ Add the following to your `.travis.yml`:
 ```yaml
 before_script:
   - sudo script/start_test_proxy.sh
+after_script:
+  - sudo pkill -f test-proxy
+```
+
+## Development
+
+```bash
+make
+./bin/test-proxy --help
 ```
