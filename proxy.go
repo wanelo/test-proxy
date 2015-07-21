@@ -50,9 +50,9 @@ func handler(p *httputil.ReverseProxy, verbose *bool) func(http.ResponseWriter, 
 			protocol = "http"
 		}
 
-    if *verbose {
-      log.Println(r.Method, protocol, r.URL)
-    }
+		if *verbose {
+			log.Println(r.Method, protocol, r.URL)
+		}
 
 		r.Header.Add("X-Forwarded-Proto", protocol)
 		r.Header.Add("Host", r.Host)
